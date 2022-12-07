@@ -1,0 +1,59 @@
+{
+  "1": {
+        "id": "1",
+        "question": "谁是诗鬼？",
+        "options": [
+            {
+                "value": "lihe",
+                "label": "李贺"
+            },
+            {
+                "value": "libai",
+                "label": "李白"
+            },
+            {
+                "value": "liyu",
+                "label": "李煜"
+            }
+        ],
+        "answer": "lihe"
+    },
+  "2": {
+        "id": "2",
+        "question": "谁是诗仙？",
+        "options": [
+            {
+                "value": "lihe",
+                "label": "李贺"
+            },
+            {
+                "value": "libai",
+                "label": "李白"
+            },
+            {
+                "value": "liyu",
+                "label": "李煜"
+            }
+        ],
+        "answer": "libai"
+    },
+   "3": {
+        "id": "3",
+        "question": "谁是诗圣？",
+        "options": [
+            {
+                "value": "lihe",
+                "label": "李贺"
+            },
+            {
+                "value": "libai",
+                "label": "李白"
+            },
+            {
+                "value": "dufu",
+                "label": "杜甫"
+            }
+        ],
+        "answer": "dufu"
+    }
+}
