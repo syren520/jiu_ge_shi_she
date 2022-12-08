@@ -74,14 +74,29 @@ export const QuestionnairePage = ({
                     padding-top: 180px;
                     flex-direction: column;
                     gap: 20px;
+                    width: 68%;
+                    margin: 0 auto;
                 `}
             >
-                <FormControl key={question.id}>
-                    <FormLabel id="question">{question.question}</FormLabel>
+                <FormControl
+                    key={question.id}
+                >
+                    <FormLabel
+                        id="question"
+                        css={css`margin-bottom: 20px; color: #f4bc33; font-weight: 800;`}
+                    >
+                        {question.question}
+                    </FormLabel>
                     <RadioGroup
                         onChange={handleChangeAnswer}
                         value={question.answer}
                         aria-labelledby="question"
+                        css={`
+                            gap: 5px;
+                            .PrivateSwitchBase-input {
+                                color: #f4bc33;
+                            }
+                        `}
                     >
                         {
                             question.options.map((option) => {
@@ -97,47 +112,49 @@ export const QuestionnairePage = ({
                         }
                     </RadioGroup>
                 </FormControl>
-            </div>
-            <div
-                css={css`
-                        display: flex;
-                        gap: 24px;
-                        justify-content: center;
-                    `}
-            >
-                {
-                    questionIndex > 0 && (
-                        <Button
-                            disabled={isLoading}
-                            variant={'contained'}
-                            onClick={() => handleMove(-1)}
-                        >
-                            Back
-                        </Button>
-                    )
-                }
-                {
-                    questionIndex < answers.length - 1 && (
-                        <Button
-                            disabled={isLoading}
-                            variant={'contained'}
-                            onClick={() => handleMove(1)}
-                        >
-                            Next
-                        </Button>
-                    )
-                }
-                {
-                    questionIndex == answers.length - 1 && (
-                        <Button
-                            variant={'contained'}
-                            disabled={remainingQuestions.length !== 0 || isLoading}
-                            onClick={handleSubmit}
-                        >
-                            Submit
-                        </Button>
-                    )
-                }
+                <div
+                    css={css`width: 100%;`}
+                >
+                    {
+                        questionIndex > 0 && (
+                            <Button
+                                css={css`float: left`}
+                                size={'small'}
+                                disabled={isLoading}
+                                variant={'contained'}
+                                onClick={() => handleMove(-1)}
+                            >
+                                上一题
+                            </Button>
+                        )
+                    }
+                    {
+                        questionIndex < answers.length - 1 && (
+                            <Button
+                                css={css`float: right`}
+                                size={'small'}
+                                disabled={isLoading}
+                                variant={'contained'}
+                                onClick={() => handleMove(1)}
+                            >
+                                下一题
+                            </Button>
+                        )
+                    }
+                    {
+                        questionIndex == answers.length - 1 && (
+                            <Button
+                                css={css`float: right`}
+                                size={'small'}
+                                variant={'contained'}
+                                disabled={remainingQuestions.length !== 0 || isLoading}
+                                onClick={handleSubmit}
+                            >
+                                交卷
+                            </Button>
+                        )
+                    }
+                </div>
             </div>
         </BgPaper>
     )
