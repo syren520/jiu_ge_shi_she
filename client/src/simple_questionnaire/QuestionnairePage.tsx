@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+    Typography,
     Button,
     FormControl,
     FormLabel,
@@ -78,6 +79,10 @@ export const QuestionnairePage = ({
                     margin: 0 auto;
                 `}
             >
+                <div css={css`width: 100%;`}>
+                    <Typography css={css`float: left;`}>已答{answers.length - remainingQuestions.length}题</Typography>
+                    <Typography css={css`float: right;`}>未答{remainingQuestions.length}题</Typography>
+                </div>
                 <FormControl
                     key={question.id}
                 >
@@ -104,7 +109,15 @@ export const QuestionnairePage = ({
                                     <FormControlLabel
                                         key={option.value}
                                         value={option.value}
-                                        control={<Radio/>}
+                                        control={
+                                            <Radio
+                                                sx={{
+                                                    '&, &.Mui-checked': {
+                                                      color: '#f4bc33',
+                                                    },
+                                                  }}
+                                            />
+                                        }
                                         label={option.label}
                                     />
                                 );
@@ -147,7 +160,7 @@ export const QuestionnairePage = ({
                                 css={css`float: right`}
                                 size={'small'}
                                 variant={'contained'}
-                                disabled={remainingQuestions.length !== 0 || isLoading}
+                                disabled={isLoading}
                                 onClick={handleSubmit}
                             >
                                 交卷

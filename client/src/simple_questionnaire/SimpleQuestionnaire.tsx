@@ -6,6 +6,7 @@ import {WelcomePage} from "./WelcomePage";
 import {Introduction} from "./Introduction";
 import {Prize} from "./Prize";
 import {css} from "styled-components/macro";
+import './font.css';
 
 const theme = createTheme({
     palette: {
@@ -19,6 +20,13 @@ const theme = createTheme({
             main: '#f4bc33',
         }
     },
+
+    typography: {
+        fontSize: 18,
+        fontFamily: [
+            '"MyFont2"',
+        ].join(','),
+      },
 });
 
 const SimpleQuestionnaire = () => {

@@ -5,6 +5,7 @@ import {css} from "styled-components/macro";
 import bgQuestion from "./images/bgQuestion.jpg";
 import bgIntro from "./images/bgIntro.jpg";
 import bgPrize from "./images/bgPrize.jpg";
+import {Typography} from "@mui/material";
 
 export const WelcomePage = ({onClick}: {onClick: () => void}) => {
     return (
@@ -14,6 +15,7 @@ export const WelcomePage = ({onClick}: {onClick: () => void}) => {
                  <BgPaper $bgUrl={bgQuestion}/>
                  <BgPaper $bgUrl={bgIntro}/>
                  <BgPaper $bgUrl={bgPrize}/>
+                <Typography>welcome</Typography>
             </div>
         </>
     );

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "MyFont";
+  src: local("MyFont"),
+   url("./fonts/ZhiMangXing-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "MyFont2";
+  src: local("MyFont2"), url("./fonts/MaShanZheng-Regular.ttf") format("truetype");
+  font-weight: 400;
+}

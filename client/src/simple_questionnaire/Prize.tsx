@@ -10,20 +10,23 @@ import {Button, Dialog, DialogActions, DialogContent} from "@mui/material";
 import {useState} from "react";
 
 const DefaultContentStyled = styled.div`
+    font-family: "MyFont2";
     color: black;
-    font-size: 17px;
-    font-family: STFangsong, serif;
-    font-weight: 800;
+    font-size: 21px;
     overflow: scroll;
     height: 250px;
     width: 215px;
     margin: 0 auto;
 `;
 const RewardContentStyled = styled(DefaultContentStyled)`
-    height: 180px;
+    height: 195px;
     writing-mode: vertical-lr;
+    line-height: 26px;
 `;
-
+const Special = styled.span`
+    color: #9c1d18;
+    font-size: 23px;
+`
 const Reward = ({
     userName,
     title,
@@ -45,20 +48,21 @@ const Reward = ({
                 <br/>
                 {`仕子 ${userName}`}
                 <br/>
-                {`诗词科举答对`}
+                {`在诗词科举答对`}
                 <strong css={css`writing-mode: horizontal-tb;`}>{scoreToDisplay}</strong>
                 {`题`}
                 <br/>
-                {`堪称${title}`}
+                {`堪称`}
+                <Special>{title}</Special>
                 <br/>
                 {'钦赐称号'}
-                {`【${role}】`}
+                <Special>{role}</Special>
                 <br/>
                 {'特昭天下'}
                 <br/>
                 {'钦此'}
             </RewardContentStyled>
-            <img src={prizeCta} onClick={() => setIsOpen(true)}/>
+            <img css={css`width: 200px; height: 100px;`} src={prizeCta} onClick={() => setIsOpen(true)}/>
             <Dialog open={isOpen}>
                 <DialogContent>
                     请截图保存该页面，凭此截图可以在载歌在谷-诗词大会活动现场领取小礼品一份，先到先得。
@@ -118,7 +122,9 @@ const DefaultContent = ({scoreToDisplay}: {scoreToDisplay: string}) => {
                 只差一点点哟！
                 您在此次科举考试中成绩为: <strong>{scoreToDisplay}</strong>
                 <br/>
+                <br/>
                 亲爱的考生，很遗憾您不幸落榜。
+                <br/>
                 <br/>
                 请继续保持对诗词的热忱，再接再厉！
             </DefaultContentStyled>
@@ -152,7 +158,7 @@ export const Prize = ({numberOfQuestions, score, userName}: {
         >
             <div
                 css={css`
-                    min-height: 70vh;
+                    min-height: 70%;
                     text-align: center;
                 `}
             >
