@@ -10,13 +10,14 @@ import {Typography} from "@mui/material";
 export const WelcomePage = ({onClick}: {onClick: () => void}) => {
     return (
         <>
-            <BgPaper $bgUrl={bgWelcome} onClick={onClick}/>
-            <div css={css`height: 0; width: 0; visibility: hidden;`}>
-                 <BgPaper $bgUrl={bgQuestion}/>
-                 <BgPaper $bgUrl={bgIntro}/>
-                 <BgPaper $bgUrl={bgPrize}/>
-                <Typography>welcome</Typography>
-            </div>
+            <BgPaper $bgUrl={bgWelcome} onClick={onClick}>
+                <div css={css`height: 0; width: 0; visibility: hidden;`}>
+                     <BgPaper $bgUrl={bgQuestion}/>
+                     <BgPaper $bgUrl={bgIntro}/>
+                     <BgPaper $bgUrl={bgPrize}/>
+                    <Typography>welcome</Typography>
+                </div>
+            </BgPaper>
         </>
     );
 };

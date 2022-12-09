@@ -5,4 +5,6 @@ export const BgPaper = styled(Paper)<{$bgUrl: string}>`
     height: 100%;
     background: url(${({$bgUrl}) => $bgUrl})  no-repeat center;
     background-size: cover;
+    display: flex;
+    justify-content: center;
 `;
