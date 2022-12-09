@@ -24,7 +24,7 @@ const theme = createTheme({
     typography: {
         fontSize: 18,
         fontFamily: [
-            '"MyFont2"',
+            '"MyFont"',
         ].join(','),
       },
 });

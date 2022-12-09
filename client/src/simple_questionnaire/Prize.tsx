@@ -10,7 +10,7 @@ import {Button, Dialog, DialogActions, DialogContent} from "@mui/material";
 import {useState} from "react";
 
 const DefaultContentStyled = styled.div`
-    font-family: "MyFont2";
+    font-family: "MyFont";
     color: black;
     font-size: 21px;
     overflow: scroll;
