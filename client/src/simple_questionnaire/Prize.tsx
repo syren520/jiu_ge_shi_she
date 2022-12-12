@@ -130,7 +130,7 @@ const DefaultContent = ({scoreToDisplay, userName}: {scoreToDisplay: string, use
     return (
             <DefaultContentStyled>
                 只差一点点哟！
-                您在此次科举考试中成绩为: <strong>{scoreToDisplay}</strong>
+                您在此次科举考试中答对<strong>{scoreToDisplay}</strong>题。
                 <br/>
                 <br/>
                 亲爱的考生，很遗憾您不幸落榜。
