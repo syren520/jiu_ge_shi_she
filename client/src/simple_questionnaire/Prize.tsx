@@ -6,8 +6,10 @@ import styled, {css} from "styled-components/macro";
 import {BgPaper} from "./components";
 import bgPrize from "./images/bgPrize.jpg";
 import prizeCta from "./images/prizeCta.png";
+import tryAgain from "./images/tryAgain.png";
 import {Button, Dialog, DialogActions, DialogContent} from "@mui/material";
 import {useState} from "react";
+import {useUserQuestionnaire} from "./utils/useUserQuestionnaire";
 
 const DefaultContentStyled = styled.div`
     font-family: "MyFont";
@@ -116,7 +118,15 @@ const getRewardContent = ({
     };
 }
 
-const DefaultContent = ({scoreToDisplay}: {scoreToDisplay: string}) => {
+const DefaultContent = ({scoreToDisplay, userName}: {scoreToDisplay: string, userName: string}) => {
+    const {setUserQuestionnaire} = useUserQuestionnaire();
+
+    const handleTryMore = () => {
+        setUserQuestionnaire({
+            userName, userQuestionnaire: null, isSubmitted: false,
+        })
+        window.location.reload();
+    };
     return (
             <DefaultContentStyled>
                 只差一点点哟！
@@ -127,6 +137,8 @@ const DefaultContent = ({scoreToDisplay}: {scoreToDisplay: string}) => {
                 <br/>
                 <br/>
                 请继续保持对诗词的热忱，再接再厉！
+                <br/>
+                <img css={css`width: 200px; height: 100px;`} src={tryAgain} onClick={handleTryMore}/>
             </DefaultContentStyled>
         );
 };
@@ -137,11 +149,10 @@ export const Prize = ({numberOfQuestions, score, userName}: {
     userName: string,
 }) => {
     const prize: number = score / numberOfQuestions;
-    // const scoreToDisplay = score.toLocaleString("zh-Hans-CN-u-nu-hanidec");
     const scoreToDisplay = `${score}`;
 
     let prizeImage = fourthPrize;
-    let content = <DefaultContent scoreToDisplay={scoreToDisplay}/>;
+    let content = <DefaultContent scoreToDisplay={scoreToDisplay} userName={userName}/>;
 
     if (prize >= 0.6) {
         ({prizeImage, content} = getRewardContent({userName, prize, scoreToDisplay}));

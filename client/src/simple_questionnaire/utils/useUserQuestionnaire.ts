@@ -15,7 +15,7 @@ export const useUserQuestionnaire = () => {
         isSubmitted = false,
     }: {
         userName: string,
-        userQuestionnaire: TypeUserQuestionnaire,
+        userQuestionnaire: TypeUserQuestionnaire | null,
         isSubmitted?: boolean,
     }) => {
         const jiugequiz = getStorage();
