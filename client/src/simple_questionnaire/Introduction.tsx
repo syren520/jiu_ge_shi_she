@@ -36,7 +36,7 @@ export const Introduction = ({onNameSubmitted}: {onNameSubmitted: (userName: str
         if (userQuestionnaire === null) {
             setIsLoading(true);
 
-            const {questions} = await getInitialUserQuestionnaire();
+            const {questions} = await getInitialUserQuestionnaire({userName});
 
             setIsLoading(false);
 
@@ -49,7 +49,7 @@ export const Introduction = ({onNameSubmitted}: {onNameSubmitted: (userName: str
         } else {
             if (isSubmitted) {
                 setIsLoading(true);
-                const score = await getScore(userQuestionnaire);
+                const score = await getScore({userQuestionnaire, userName, isRevisit: true});
                 setIsLoading(false);
 
                 if (score !== null) {

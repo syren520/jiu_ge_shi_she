@@ -56,7 +56,7 @@ export const QuestionnairePage = ({
 
     const handleSubmit = async () => {
         setIsLoading(true);
-        const score = await getScore(answers);
+        const score = await getScore({userQuestionnaire: answers, userName});
         setIsLoading(false);
 
         if (score !== null) {

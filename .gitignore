@@ -1,2 +1,5 @@
 # dependencies
 /node_modules
+server/simple_questionnaire/data/*
+/server/node_modules
+/client/node_modules
