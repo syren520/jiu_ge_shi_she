@@ -27,13 +27,17 @@ const getAnalyticsData = async (req, res) => {
     const results = {
         totalUsersStart,
         totalUsersCompletes,
-        usersStart: usersStart.map(({timestamp, ...fields}) => ({
+        usersStart: usersStart
+            .sort((a1, a2) => a2.timestamp - a1.timestamp)
+            .map(({timestamp, ...fields}) => ({
             ...fields,
             time: (new Date(timestamp)).toLocaleString('en-US', {
                 timeZone: 'America/Los_Angeles',
             }),
         })),
-        usersComplete: usersComplete.map(({timestamp, ...fields}) => ({
+        usersComplete: usersComplete
+            .sort((a1, a2) => a2.timestamp - a1.timestamp)
+            .map(({timestamp, ...fields}) => ({
             ...fields,
             time: (new Date(timestamp)).toLocaleString('en-US', {
                 timeZone: 'America/Los_Angeles',
