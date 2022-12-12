@@ -65,7 +65,7 @@ const Reward = ({
             <img css={css`width: 200px; height: 100px;`} src={prizeCta} onClick={() => setIsOpen(true)}/>
             <Dialog open={isOpen}>
                 <DialogContent>
-                    请截图保存该页面，凭此截图可以在载歌在谷-诗词大会活动现场领取小礼品一份，先到先得。
+                    请截图保存皇榜页面，凭此截图可以在载歌在谷-诗词大会活动现场领取小礼品一份，先到先得。
                 </DialogContent>
                 <DialogActions>
                     <Button variant={'contained'} onClick={() => {setIsOpen(false)}}>了解</Button>
