@@ -5,12 +5,9 @@ import fourthPrize from './images/fourthPrize.png'
 import styled, {css} from "styled-components/macro";
 import {BgPaper} from "./components";
 import bgPrize from "./images/bgPrize.jpg";
-import qr from "./images/qr.png";
 import prizeCta from "./images/prizeCta.png";
 import {Button, Dialog, DialogActions, DialogContent} from "@mui/material";
-import {useState, useRef, useCallback} from "react";
-import { toJpeg } from 'html-to-image';
-import {LoadingSpinner} from "./components/LoadingSpinner";
+import {useState} from "react";
 
 const DefaultContentStyled = styled.div`
     font-family: "MyFont";
@@ -35,27 +32,14 @@ const Reward = ({
     title,
     role,
     scoreToDisplay,
-    onClickConfirm
 
                                        }: {
     userName: string,
     title: string,
     role: string,
     scoreToDisplay: string,
-    onClickConfirm: () => void,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleClick = async () => {
-        if (!isLoading) {
-            setIsLoading(true);
-            await onClickConfirm();
-            setIsLoading(false);
-            setIsOpen(false);
-        }
-    };
-
     return (
         <>
             <RewardContentStyled>
@@ -78,52 +62,13 @@ const Reward = ({
                 <br/>
                 {'钦此'}
             </RewardContentStyled>
-            {
-                !isOpen && (
-                    <img css={css`
-                            width: 200px; 
-                            height: 100px;
-                            `}
-                         src={prizeCta}
-                         onClick={() => setIsOpen(true)}
-                    />
-                )
-            }
-            {
-                isOpen && (
-                    <img css={css`
-                            margin-top: 15px;
-                            width: 100px; 
-                            height: 100px;
-                        `}
-                         src={qr}
-                    />
-                )
-            }
+            <img css={css`width: 200px; height: 100px;`} src={prizeCta} onClick={() => setIsOpen(true)}/>
             <Dialog open={isOpen}>
-                {
-                    isLoading && (
-                        <LoadingSpinner
-                            css={css`
-                                margin: auto;
-                                position: absolute;
-                                top: 0; left: 0; bottom: 0; right: 0;
-                            `}
-                        />
-                    )
-                }
-                <DialogContent
-                    css={css`position: relative;`}
-                >
+                <DialogContent>
                     请截图保存该页面，凭此截图可以在载歌在谷-诗词大会活动现场领取小礼品一份，先到先得。
                 </DialogContent>
                 <DialogActions>
-                    <Button
-                        variant={'contained'}
-                        onClick={handleClick}
-                    >
-                        截图保存
-                    </Button>
+                    <Button variant={'contained'} onClick={() => {setIsOpen(false)}}>了解</Button>
                 </DialogActions>
             </Dialog>
         </>
@@ -134,13 +79,11 @@ const getRewardContent = ({
     userName,
     prize,
     scoreToDisplay,
-    onClickConfirm
 
                                        }: {
     userName: string,
     prize: number,
     scoreToDisplay: string,
-    onClickConfirm: () => void
 }) => {
     let prizeImage;
     let title;
@@ -168,7 +111,6 @@ const getRewardContent = ({
                 title={title}
                 role={role}
                 scoreToDisplay={scoreToDisplay}
-                onClickConfirm={onClickConfirm}
             />
         )
     };
@@ -194,37 +136,19 @@ export const Prize = ({numberOfQuestions, score, userName}: {
     score: number,
     userName: string,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
     const prize: number = score / numberOfQuestions;
+    // const scoreToDisplay = score.toLocaleString("zh-Hans-CN-u-nu-hanidec");
     const scoreToDisplay = `${score}`;
 
     let prizeImage = fourthPrize;
     let content = <DefaultContent scoreToDisplay={scoreToDisplay}/>;
 
-    const onClickConfirm = useCallback(
-        async () => {
-            if (ref.current === null) {
-                return
-            }
-
-            const dataUrl = await toJpeg(ref.current, {cacheBust: true,});
-
-            const link = document.createElement('a');
-            link.download = `shi_ci_ke_ju_result_${Date.now()}.jpeg`;
-            link.href = dataUrl;
-            link.click();
-            link.remove();
-        },
-        [ref]);
-
-
     if (prize >= 0.6) {
-        ({prizeImage, content} = getRewardContent({userName, prize, scoreToDisplay, onClickConfirm}));
+        ({prizeImage, content} = getRewardContent({userName, prize, scoreToDisplay}));
     }
 
     return (
         <BgPaper
-            ref={ref}
             $bgUrl={bgPrize}
             css={css`
                 display: flex;
