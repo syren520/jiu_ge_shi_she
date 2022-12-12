@@ -9,14 +9,14 @@ const getScore = (req, res) => {
          score = answers.filter(({id, answer}) => questions[id] !== undefined && questions[id].answer === answer).length;
     }
 
+    res.json({score});
+
     if (!isRevisit) {
         trackEvent({event: 'user_completes_test', props: {
             userName,
             score,
         }});
     }
-
-    res.json({score});
 
 }
 

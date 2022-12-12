@@ -11,6 +11,8 @@ const getQuestions = (req, res) => {
     }
   });
 
+  res.json({questions: questionsToReturn});
+
   if (userName) {
     trackEvent({
       event: 'user_starts_test',
@@ -19,9 +21,6 @@ const getQuestions = (req, res) => {
       }
     });
   }
-
-
-  res.json({questions: questionsToReturn});
 };
 
 module.exports = { getQuestions };
